@@ -1,0 +1,17 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Little Lemon | Restaurant</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header class="site-header"><div class="wrap"><div class="brand">🍋 Little Lemon</div><nav aria-label="Main navigation"><a href="#home">Home</a><a href="#menu">Menu</a><a href="#booking">Book a table</a><a href="/api/">API</a><a href="/admin/">Admin</a></nav></div></header>
+  <main>
+    <section id="home" class="hero"><div class="wrap"><p class="eyebrow">A little taste of the Mediterranean</p><h1>Fresh food. Warm welcomes.</h1><p>Seasonal ingredients, classic flavours, and a place to slow down and enjoy a meal.</p><a class="button" href="#booking">Reserve a table</a></div></section>
+    <section id="menu" class="section wrap"><p class="eyebrow">From our kitchen</p><h2>Our menu</h2><p>Explore our menu through the API endpoint: <code>/api/menu-items/</code>. Categories are available at <code>/api/categories/</code>.</p><div class="cards"><article><h3>Greek Salad</h3><p>Tomatoes, cucumber, olives, feta and herbs.</p></article><article><h3>Bruschetta</h3><p>Toasted bread with tomatoes, basil and olive oil.</p></article><article><h3>Lemon Dessert</h3><p>A bright, citrusy finish to your meal.</p></article></div></section>
+    <section id="booking" class="booking"><div class="wrap"><h2>Book a table</h2><p>Sign in first, then send a POST request to <code>/api/bookings/</code> using your API client.</p><p>Required fields: <code>name</code>, <code>no_of_guests</code>, and a future <code>booking_date</code> (ISO 8601 datetime).</p><a class="button button-light" href="/api/bookings/">Open booking API</a></div></section>
+  </main>
+  <footer><div class="wrap">Little Lemon · Django restaurant demo</div></footer>
+</body></html>

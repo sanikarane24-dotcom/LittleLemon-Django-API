@@ -1,0 +1,17 @@
+# Generated as the initial schema for the Little Lemon peer-review project.
+from django.conf import settings
+from django.db import migrations, models
+import django.db.models.deletion
+
+
+class Migration(migrations.Migration):
+    initial = True
+    dependencies = [migrations.swappable_dependency(settings.AUTH_USER_MODEL)]
+    operations = [
+        migrations.CreateModel(name="Category", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("slug", models.SlugField(unique=True)), ("title", models.CharField(max_length=255))]),
+        migrations.CreateModel(name="MenuItem", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("title", models.CharField(max_length=255)), ("price", models.DecimalField(decimal_places=2, max_digits=6)), ("inventory", models.SmallIntegerField()), ("category", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name="menuitems", to="LittleLemonAPI.category"))]),
+        migrations.CreateModel(name="Cart", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("quantity", models.PositiveSmallIntegerField(default=1)), ("unit_price", models.DecimalField(decimal_places=2, max_digits=6)), ("price", models.DecimalField(decimal_places=2, max_digits=8)), ("menuitem", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="LittleLemonAPI.menuitem")), ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="cart_items", to=settings.AUTH_USER_MODEL))], options={"constraints": [models.UniqueConstraint(fields=("user", "menuitem"), name="unique_cart_user_menuitem")]}),
+        migrations.CreateModel(name="Order", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("status", models.BooleanField(default=False)), ("total", models.DecimalField(decimal_places=2, max_digits=8)), ("date", models.DateField(auto_now_add=True)), ("delivery_crew", models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name="delivery_orders", to=settings.AUTH_USER_MODEL)), ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="orders", to=settings.AUTH_USER_MODEL))]),
+        migrations.CreateModel(name="OrderItem", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("quantity", models.PositiveSmallIntegerField()), ("unit_price", models.DecimalField(decimal_places=2, max_digits=6)), ("price", models.DecimalField(decimal_places=2, max_digits=8)), ("menuitem", models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="LittleLemonAPI.menuitem")), ("order", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="items", to="LittleLemonAPI.order"))]),
+        migrations.CreateModel(name="Booking", fields=[("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")), ("name", models.CharField(max_length=100)), ("no_of_guests", models.PositiveSmallIntegerField(default=2)), ("booking_date", models.DateTimeField()), ("created_at", models.DateTimeField(auto_now_add=True)), ("user", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name="bookings", to=settings.AUTH_USER_MODEL))], options={"ordering": ["booking_date"]}),
+    ]

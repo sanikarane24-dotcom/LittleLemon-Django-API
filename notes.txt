@@ -1,0 +1,17 @@
+Little Lemon — local testing notes
+==================================
+
+Homepage: http://127.0.0.1:8000/
+Admin:    http://127.0.0.1:8000/admin/
+API root: http://127.0.0.1:8000/api/
+Menu:     http://127.0.0.1:8000/api/menu-items/
+Bookings: http://127.0.0.1:8000/api/bookings/
+Register: POST http://127.0.0.1:8000/api/users/
+Token:    POST http://127.0.0.1:8000/api/token/login/
+
+Create your own local admin and test users. For peer review, use Django admin to
+create the Manager and Delivery crew groups and assign test users to them.
+Do not publish passwords or production secrets in GitHub.
+
+MySQL is enabled by setting DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, and DB_PORT.
+If DB_NAME is unset, SQLite is used for local demonstration and tests.
