@@ -62,6 +62,8 @@ All endpoints use `/api/` as the base path. API routes accept trailing slashes.
 Menu supports filtering by category, search by title/category, ordering by price/title/inventory, and page-number pagination. DRF browsable API is enabled for browser-based testing.
 
 ## Test with Insomnia
+Import `insomnia_collection.json` into Insomnia for ready-made requests. Set the `token` environment variable after logging in; the sample booking datetime must be in the future when you run it.
+
 1. Start the server and create a user with `POST http://127.0.0.1:8000/api/users/` and JSON such as `{"username":"customer1","password":"StrongPass123!"}`.
 2. Obtain a token with `POST http://127.0.0.1:8000/api/token/login/`, JSON `{"username":"customer1","password":"StrongPass123!"}`.
 3. For protected routes, add header `Authorization: Token <token>`.

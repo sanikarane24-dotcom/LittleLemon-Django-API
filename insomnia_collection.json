@@ -1,0 +1,125 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-10-17T00:00:00.000Z",
+  "__export_source": "little-lemon-django-project",
+  "resources": [
+    {
+      "_id": "wrk_littlelemon",
+      "parentId": null,
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "name": "Little Lemon API",
+      "description": "Requests for the Little Lemon Django API",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_littlelemon",
+      "parentId": "wrk_littlelemon",
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "name": "Base Environment",
+      "data": { "base_url": "http://127.0.0.1:8000", "token": "PASTE_TOKEN_HERE" },
+      "dataPropertyOrder": { "&": ["base_url", "token"] },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1,
+      "_type": "environment"
+    },
+    {
+      "_id": "fld_public",
+      "parentId": "wrk_littlelemon",
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "name": "Public endpoints",
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_home",
+      "parentId": "fld_public",
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "url": "{{ _.base_url }}/",
+      "name": "Homepage HTML",
+      "method": "GET",
+      "headers": [],
+      "parameters": [],
+      "body": {},
+      "_type": "request"
+    },
+    {
+      "_id": "req_menu",
+      "parentId": "fld_public",
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "url": "{{ _.base_url }}/api/menu-items/",
+      "name": "List menu items",
+      "method": "GET",
+      "headers": [],
+      "parameters": [],
+      "body": {},
+      "_type": "request"
+    },
+    {
+      "_id": "req_register",
+      "parentId": "fld_public",
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "url": "{{ _.base_url }}/api/users/",
+      "name": "Register user",
+      "method": "POST",
+      "headers": [{"name":"Content-Type","value":"application/json"}],
+      "parameters": [],
+      "body": {"mimeType":"application/json","text":"{\n  \"username\": \"customer1\",\n  \"password\": \"StrongPass123!\"\n}"},
+      "_type": "request"
+    },
+    {
+      "_id": "req_login",
+      "parentId": "fld_public",
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "url": "{{ _.base_url }}/api/token/login/",
+      "name": "Get auth token",
+      "method": "POST",
+      "headers": [{"name":"Content-Type","value":"application/json"}],
+      "parameters": [],
+      "body": {"mimeType":"application/json","text":"{\n  \"username\": \"customer1\",\n  \"password\": \"StrongPass123!\"\n}"},
+      "_type": "request"
+    },
+    {
+      "_id": "fld_protected",
+      "parentId": "wrk_littlelemon",
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "name": "Authenticated endpoints",
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_bookings",
+      "parentId": "fld_protected",
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "url": "{{ _.base_url }}/api/bookings/",
+      "name": "List my bookings",
+      "method": "GET",
+      "headers": [{"name":"Authorization","value":"Token {{ _.token }}"}],
+      "parameters": [],
+      "body": {},
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_booking",
+      "parentId": "fld_protected",
+      "modified": 1792195200000,
+      "created": 1792195200000,
+      "url": "{{ _.base_url }}/api/bookings/",
+      "name": "Create table booking",
+      "method": "POST",
+      "headers": [{"name":"Authorization","value":"Token {{ _.token }}"},{"name":"Content-Type","value":"application/json"}],
+      "parameters": [],
+      "body": {"mimeType":"application/json","text":"{\n  \"name\": \"Customer One\",\n  \"no_of_guests\": 2,\n  \"booking_date\": \"2027-01-15T19:00:00+05:30\"\n}"},
+      "_type": "request"
+    }
+  ]
+}
